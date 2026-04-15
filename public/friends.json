@@ -1,0 +1,122 @@
+[
+  {
+    "id": 1,
+    "name": "Arif Hasan",
+    "picture": "https://randomuser.me/api/portraits/men/1.jpg",
+    "email": "[arif.hasan@gmail.com](mailto:arif.hasan@gmail.com)",
+    "days_since_contact": 18,
+    "status": "overdue",
+    "tags": ["college", "close friend"],
+    "bio": "We studied computer science together and still share coding ideas occasionally.",
+    "goal": 14,
+    "next_due_date": "2026-04-10"
+  },
+  {
+    "id": 2,
+    "name": "Nusrat Jahan",
+    "picture": "https://randomuser.me/api/portraits/women/2.jpg",
+    "email": "[nusrat.jahan@gmail.com](mailto:nusrat.jahan@gmail.com)",
+    "days_since_contact": 12,
+    "status": "almost due",
+    "tags": ["school", "best friend"],
+    "bio": "We have been friends since school and talk about everything from life to career.",
+    "goal": 14,
+    "next_due_date": "2026-04-17"
+  },
+  {
+    "id": 3,
+    "name": "Tanvir Ahmed",
+    "picture": "https://randomuser.me/api/portraits/men/3.jpg",
+    "email": "[tanvir.ahmed@gmail.com](mailto:tanvir.ahmed@gmail.com)",
+    "days_since_contact": 5,
+    "status": "on-track",
+    "tags": ["gym", "workout partner"],
+    "bio": "Met at the gym. We motivate each other to stay consistent.",
+    "goal": 10,
+    "next_due_date": "2026-04-20"
+  },
+  {
+    "id": 4,
+    "name": "Farzana Rahman",
+    "picture": "https://randomuser.me/api/portraits/women/4.jpg",
+    "email": "[farzana.rahman@gmail.com](mailto:farzana.rahman@gmail.com)",
+    "days_since_contact": 20,
+    "status": "overdue",
+    "tags": ["office", "colleague"],
+    "bio": "Worked together on multiple projects. Always helpful and supportive.",
+    "goal": 15,
+    "next_due_date": "2026-04-08"
+  },
+  {
+    "id": 5,
+    "name": "Mahmudul Islam",
+    "picture": "https://randomuser.me/api/portraits/men/5.jpg",
+    "email": "[mahmudul.islam@gmail.com](mailto:mahmudul.islam@gmail.com)",
+    "days_since_contact": 13,
+    "status": "almost due",
+    "tags": ["startup", "co-founder"],
+    "bio": "We tried building a startup together during university days.",
+    "goal": 14,
+    "next_due_date": "2026-04-16"
+  },
+  {
+    "id": 6,
+    "name": "Sadia Akter",
+    "picture": "https://randomuser.me/api/portraits/women/6.jpg",
+    "email": "[sadia.akter@gmail.com](mailto:sadia.akter@gmail.com)",
+    "days_since_contact": 3,
+    "status": "on-track",
+    "tags": ["neighbor", "family friend"],
+    "bio": "Grew up in the same neighborhood. Families are very close.",
+    "goal": 10,
+    "next_due_date": "2026-04-22"
+  },
+  {
+    "id": 7,
+    "name": "Rakib Chowdhury",
+    "picture": "https://randomuser.me/api/portraits/men/7.jpg",
+    "email": "[rakib.chowdhury@gmail.com](mailto:rakib.chowdhury@gmail.com)",
+    "days_since_contact": 16,
+    "status": "overdue",
+    "tags": ["university", "project partner"],
+    "bio": "Worked on many group assignments together during university.",
+    "goal": 14,
+    "next_due_date": "2026-04-11"
+  },
+  {
+    "id": 8,
+    "name": "Mim Sultana",
+    "picture": "https://randomuser.me/api/portraits/women/8.jpg",
+    "email": "[mim.sultana@gmail.com](mailto:mim.sultana@gmail.com)",
+    "days_since_contact": 11,
+    "status": "almost due",
+    "tags": ["online friend", "design"],
+    "bio": "Met through an online design community. We share UI ideas.",
+    "goal": 14,
+    "next_due_date": "2026-04-18"
+  },
+  {
+    "id": 9,
+    "name": "Shakil Hossain",
+    "picture": "https://randomuser.me/api/portraits/men/9.jpg",
+    "email": "[shakil.hossain@gmail.com](mailto:shakil.hossain@gmail.com)",
+    "days_since_contact": 6,
+    "status": "on-track",
+    "tags": ["football", "teammate"],
+    "bio": "We play football together every weekend.",
+    "goal": 10,
+    "next_due_date": "2026-04-21"
+  },
+  {
+    "id": 10,
+    "name": "Tania Kabir",
+    "picture": "https://randomuser.me/api/portraits/women/10.jpg",
+    "email": "[tania.kabir@gmail.com](mailto:tania.kabir@gmail.com)",
+    "days_since_contact": 19,
+    "status": "overdue",
+    "tags": ["mentor", "career guidance"],
+    "bio": "She guided me during my early career decisions and still inspires me.",
+    "goal": 14,
+    "next_due_date": "2026-04-09"
+  }
+]
