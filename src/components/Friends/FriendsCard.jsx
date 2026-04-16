@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 
 export const FriendCard = ({
@@ -23,8 +25,16 @@ export const FriendCard = ({
     "bg-slate-200 text-slate-700";
   // console.log({ image, name }, "friend props");
 
+  const handleClick = () => {
+    const friend = { id, name, status, days_since_contact, tags, picture };
+    console.log("card clicked:", friend);
+  };
+
   return (
-    <div className="card bg-white shadow-2xl shadow-slate-200/60 rounded-[2.5rem] p-10 flex flex-col items-center text-center border-none ">
+    <div
+      onClick={handleClick}
+      className="card bg-white shadow-2xl shadow-slate-200/60 rounded-[2.5rem] p-10 flex flex-col items-center text-center border-none cursor-pointer"
+    >
       {/* Profile Avatar */}
       <div className="avatar mb-6">
         <div className="w-32 h-32 rounded-full relative overflow-hidden">
