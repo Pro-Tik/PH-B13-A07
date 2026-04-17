@@ -2,8 +2,7 @@
 
 import Image from "next/image";
 import { useParams } from "next/navigation";
-import friendsData from "@/../public/friends.json";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import {
   FiPhone,
   FiMessageSquare,
@@ -17,8 +16,31 @@ import ActionButton from "@/components/ActionButton";
 // Removed unused 'params' prop
 export default function Friendinfoshow() {
   const { id } = useParams();
+  const [friendsData, setFriendsData] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch("/friends.json")
+      .then((res) => res.json())
+      .then((data) => {
+        setFriendsData(data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error("Failed to fetch friends:", err);
+        setLoading(false);
+      });
+  }, []);
 
   const friend = friendsData.find((friend) => friend.id === Number(id));
+
+  if (loading) {
+    return (
+      <div className="min-h-[60vh] flex items-center justify-center p-6">
+        <span className="loading loading-spinner text-error loading-lg"></span>
+      </div>
+    );
+  }
 
   if (!friend) {
     return (
@@ -44,7 +66,13 @@ export default function Friendinfoshow() {
           />
 
           <h3 className="font-semibold text-lg text-gray-800 mt-4">{friend.name}</h3>
-
+          {(friend.tags || []).map((tag, i) => (
+            <div key={i} className="mb-4">
+              <span className="bg-[#dcfce7] text-[#15803d] font-bold py-2 px-6  rounded-full text-xs tracking-widest uppercase">
+                {tag}
+              </span>
+            </div>
+          ))}
           <span className="mt-2 text-xs px-2.5 py-1 rounded-full bg-red-100 text-red-600 font-semibold">
             {friend.status}
           </span>

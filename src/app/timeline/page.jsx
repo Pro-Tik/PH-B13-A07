@@ -1,10 +1,9 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FaHandshake, FaVideo, FaPhoneAlt } from "react-icons/fa";
 import { HiOutlineChatBubbleLeft } from "react-icons/hi2";
 import { FiClock, FiArchive, FiTrash2 } from "react-icons/fi";
 import { useTimeline } from "@/context/TimelineContext";
-import friendsData from "@/../public/friends.json";
 
 // 1. Icon Mapper Function
 const getIcon = (type) => {
@@ -31,6 +30,21 @@ const getIcon = (type) => {
 const Timeline = () => {
   const [filter, setFilter] = useState("All");
   const { events } = useTimeline();
+  const [friendsData, setFriendsData] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch("/friends.json")
+      .then((res) => res.json())
+      .then((data) => {
+        setFriendsData(data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error("Failed to fetch friends:", err);
+        setLoading(false);
+      });
+  }, []);
 
   // Map over context events to format them
   const contextData = events.map((e) => {
@@ -52,6 +66,14 @@ const Timeline = () => {
   // 2. Filter Logic
   const filteredData =
     filter === "All" ? contextData : contextData.filter((item) => item.type === filter);
+
+  if (loading) {
+    return (
+      <div className="min-h-[60vh] flex items-center justify-center p-6">
+        <span className="loading loading-spinner text-error loading-lg"></span>
+      </div>
+    );
+  }
 
   return (
     <div className="max-w-4xl p-8 font-sans">

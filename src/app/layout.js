@@ -26,8 +26,9 @@ export default function RootLayout({ children }) {
     <html
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      data-theme="light"
     >
-      <body className="min-h-screen flex flex-col" data-theme="light">
+      <body className="min-h-screen flex flex-col">
         <Navbar />
         <TimelineProvider>
           <main className="flex-1">{children}</main>

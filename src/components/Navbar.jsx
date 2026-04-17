@@ -45,10 +45,10 @@ export default function Navbar() {
           </li>
           <li className="hidden sm:block">
             <Link
-              href="/ice-breaker"
-              className={`${linkStyles} ${isActive("/ice-breaker") ? activeStyles : inactiveStyles}`}
+              href="/analytics"
+              className={`${linkStyles} ${isActive("/analytics") ? activeStyles : inactiveStyles}`}
             >
-              Ice Breaker
+              Analytics
             </Link>
           </li>
         </ul>
