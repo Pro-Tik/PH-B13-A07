@@ -1,6 +1,6 @@
-"use client";
-
 import Image from "next/image";
+import friendsData from "@/../public/friends.json";
+
 import {
   FiPhone,
   FiMessageSquare,
@@ -10,7 +10,23 @@ import {
   FiTrash2,
 } from "react-icons/fi";
 
-export default function FriendProfileCard() {
+export default async function Friendinfoshow({ params }) {
+  const { id } = await params;
+  console.log(friendsData, "From id page and id is ", id);
+  const friend = friendsData.find((friend) => friend.id === Number(id));
+  console.log(friend);
+  //    {
+  //     "id": 1,
+  //     "name": "Arif Hasan",
+  //     "picture": "https://randomuser.me/api/portraits/men/1.jpg",
+  //     "email": "[arif.hasan@gmail.com](mailto:arif.hasan@gmail.com)",
+  //     "days_since_contact": 18,
+  //     "status": "overdue",
+  //     "tags": ["college", "close friend"],
+  //     "bio": "We studied computer science together and still share coding ideas occasionally.",
+  //     "goal": 14,
+  //     "next_due_date": "2026-04-10"
+  //   }
   return (
     <div className="bg-[#f8fafc] flex items-center justify-center p-6">
       <div className="bg-white rounded-2xl shadow-sm border border-gray-200 w-full max-w-5xl grid grid-cols-[260px_1fr]">
@@ -24,16 +40,14 @@ export default function FriendProfileCard() {
             className="rounded-full"
           />
 
-          <h3 className="font-semibold text-gray-800 mt-3">Emma Wilson</h3>
+          <h3 className="font-semibold text-gray-800 mt-3">{friend.name}</h3>
 
           <span className="mt-1 text-xs px-2 py-[2px] rounded-full bg-red-100 text-red-600 font-medium">
-            Overdue
+            {friend.status}
           </span>
 
           <p className="text-xs text-gray-500 mt-3 leading-relaxed">
-            "Former colleague, great mentor"
-            <br />
-            Preferred email
+            {friend.bio}
           </p>
 
           <div className="mt-6 w-full space-y-2">
@@ -58,9 +72,12 @@ export default function FriendProfileCard() {
         <div className="p-6 space-y-4">
           {/* STATS */}
           <div className="grid grid-cols-3 gap-4">
-            <Stat title="Days Since Contact" value="62" />
-            <Stat title="Goal (Days)" value="30" />
-            <Stat title="Next Due" value="Feb 27, 2026" />
+            <Stat
+              title="Days Since Contact"
+              value={friend.days_since_contact}
+            />
+            <Stat title="Goal (Days)" value={friend.goal} />
+            <Stat title="Next Due" value={friend.next_due_date} />
           </div>
 
           {/* RELATIONSHIP GOAL */}
@@ -70,7 +87,8 @@ export default function FriendProfileCard() {
                 Relationship Goal
               </p>
               <p className="text-xs text-gray-500">
-                Connect every <span className="font-medium">30 days</span>
+                Connect every{" "}
+                <span className="font-medium">{friend.goal} days</span>
               </p>
             </div>
 

@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 
 export const FriendCard = ({
   picture,
@@ -25,13 +26,15 @@ export const FriendCard = ({
     "bg-slate-200 text-slate-700";
   // console.log({ image, name }, "friend props");
 
-  const handleClick = () => {
+  const handleClick = (e) => {
+    // allow Link navigation; log for debug
     const friend = { id, name, status, days_since_contact, tags, picture };
     console.log("card clicked:", friend);
   };
 
   return (
-    <div
+    <Link
+      href={`/friendsinfo/${id}`}
       onClick={handleClick}
       className="card bg-white shadow-2xl shadow-slate-200/60 rounded-[2.5rem] p-10 flex flex-col items-center text-center border-none cursor-pointer"
     >
@@ -67,7 +70,7 @@ export const FriendCard = ({
       >
         {status || "Unknown"}
       </button>
-    </div>
+    </Link>
   );
 };
 
