@@ -76,60 +76,62 @@ const Timeline = () => {
   }
 
   return (
-    <div className="max-w-4xl p-8 font-sans">
-      <h1 className="text-3xl font-bold text-[#0f172a] mb-8">Timeline</h1>
+    <div className="w-full bg-[#f8fafc] flex justify-center min-h-[calc(100vh-250px)]">
+      <div className="w-full max-w-4xl p-8 font-sans border-x border-gray-100/50 bg-[#f8fafc]">
+        <h1 className="text-3xl font-bold text-[#0f172a] mb-8">Timeline</h1>
 
-      {/* Filter Dropdown */}
-      <div className="relative mb-6">
-        <select
-          onChange={(e) => setFilter(e.target.value)}
-          className="bg-[#f8fafc] border border-gray-200 text-slate-500 py-2 px-4 pr-10 rounded-md text-sm cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-100"
-        >
-          <option value="All">Filter timeline</option>
-          <option value="Meetup">Meetup</option>
-          <option value="Text">Text</option>
-          <option value="Video">Video</option>
-          <option value="Call">Call</option>
-          <option value="Snooze">Snooze</option>
-          <option value="Archive">Archive</option>
-          <option value="Delete">Delete</option>
-        </select>
-      </div>
-
-      {/* Dynamic List */}
-      <div className="space-y-3">
-        {filteredData.map((item) => (
-          <div
-            key={item.id}
-            className="flex items-center p-5 bg-white border border-gray-100 rounded-lg shadow-sm hover:shadow-md transition-all duration-200"
+        {/* Filter Dropdown */}
+        <div className="relative mb-6">
+          <select
+            onChange={(e) => setFilter(e.target.value)}
+            className="bg-white border border-gray-200 text-slate-500 py-2 px-4 pr-10 rounded-md text-sm cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-100"
           >
-            {/* Dynamic Icon */}
-            <div className="w-12 flex-shrink-0">{getIcon(item.type)}</div>
+            <option value="All">Filter timeline</option>
+            <option value="Meetup">Meetup</option>
+            <option value="Text">Text</option>
+            <option value="Video">Video</option>
+            <option value="Call">Call</option>
+            <option value="Snooze">Snooze</option>
+            <option value="Archive">Archive</option>
+            <option value="Delete">Delete</option>
+          </select>
+        </div>
 
-            {/* Content */}
-            <div className="flex flex-col">
-              <div className="flex items-center gap-1.5 leading-none">
-                <span className="font-bold text-slate-800 text-lg">
-                  {item.type}
-                </span>
-                <span className="text-slate-400 font-normal">with</span>
-                <span className="font-semibold text-slate-600 text-lg">
-                  {item.person}
+        {/* Dynamic List */}
+        <div className="space-y-3">
+          {filteredData.map((item) => (
+            <div
+              key={item.id}
+              className="flex items-center p-5 bg-white border border-gray-100 rounded-lg shadow-sm hover:shadow-md transition-all duration-200"
+            >
+              {/* Dynamic Icon */}
+              <div className="w-12 flex-shrink-0">{getIcon(item.type)}</div>
+
+              {/* Content */}
+              <div className="flex flex-col">
+                <div className="flex items-center gap-1.5 leading-none">
+                  <span className="font-bold text-slate-800 text-lg">
+                    {item.type}
+                  </span>
+                  <span className="text-slate-400 font-normal">with</span>
+                  <span className="font-semibold text-slate-600 text-lg">
+                    {item.person}
+                  </span>
+                </div>
+                <span className="text-[11px] font-bold text-slate-400 mt-2 tracking-widest uppercase">
+                  {item.date}
                 </span>
               </div>
-              <span className="text-[11px] font-bold text-slate-400 mt-2 tracking-widest uppercase">
-                {item.date}
-              </span>
             </div>
-          </div>
-        ))}
+          ))}
 
-        {/* Empty State */}
-        {filteredData.length === 0 && (
-          <p className="text-slate-400 text-center py-10 italic">
-            No items found for this filter.
-          </p>
-        )}
+          {/* Empty State */}
+          {filteredData.length === 0 && (
+            <p className="text-slate-400 text-center py-10 italic">
+              No items found for this filter.
+            </p>
+          )}
+        </div>
       </div>
     </div>
   );
