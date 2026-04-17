@@ -1,6 +1,9 @@
-import Image from "next/image";
-import friendsData from "@/../public/friends.json";
+"use client";
 
+import Image from "next/image";
+import { useParams } from "next/navigation";
+import friendsData from "@/../public/friends.json";
+import { useEffect } from "react";
 import {
   FiPhone,
   FiMessageSquare,
@@ -9,69 +12,73 @@ import {
   FiArchive,
   FiTrash2,
 } from "react-icons/fi";
+import ActionButton from "@/components/ActionButton";
 
-export default async function Friendinfoshow({ params }) {
-  const { id } = await params;
-  console.log(friendsData, "From id page and id is ", id);
+// Removed unused 'params' prop
+export default function Friendinfoshow() {
+  const { id } = useParams();
+
   const friend = friendsData.find((friend) => friend.id === Number(id));
-  console.log(friend);
-  //    {
-  //     "id": 1,
-  //     "name": "Arif Hasan",
-  //     "picture": "https://randomuser.me/api/portraits/men/1.jpg",
-  //     "email": "[arif.hasan@gmail.com](mailto:arif.hasan@gmail.com)",
-  //     "days_since_contact": 18,
-  //     "status": "overdue",
-  //     "tags": ["college", "close friend"],
-  //     "bio": "We studied computer science together and still share coding ideas occasionally.",
-  //     "goal": 14,
-  //     "next_due_date": "2026-04-10"
-  //   }
+
+  if (!friend) {
+    return (
+      <div className="min-h-[60vh] flex items-center justify-center p-6">
+        <p className="text-gray-600">Friend not found</p>
+      </div>
+    );
+  }
+
   return (
-    <div className="bg-[#f8fafc] flex items-center justify-center p-6">
-      <div className="bg-white rounded-2xl shadow-sm border border-gray-200 w-full max-w-5xl grid grid-cols-[260px_1fr]">
+    <div className="bg-[#f8fafc] min-h-screen flex items-start sm:items-center justify-center p-4 sm:p-6">
+      <div className="bg-white rounded-2xl shadow-sm border border-gray-200 w-full max-w-5xl flex flex-col md:flex-row">
         {/* LEFT PANEL */}
-        <div className="p-6 border-r border-gray-200 flex flex-col items-center text-center">
+        <div className="p-6 md:w-[280px] lg:w-[320px] md:border-r border-b md:border-b-0 border-gray-200 flex flex-col items-center text-center shrink-0">
           <Image
-            src="https://randomuser.me/api/portraits/men/3.jpg"
-            alt="Emma Wilson"
-            width={64}
-            height={64}
-            className="rounded-full"
+            src={
+              friend.picture || "https://randomuser.me/api/portraits/men/3.jpg"
+            }
+            alt={friend.name || "Friend profile picture"}
+            width={80}
+            height={80}
+            className="rounded-full shadow-sm"
           />
 
-          <h3 className="font-semibold text-gray-800 mt-3">{friend.name}</h3>
+          <h3 className="font-semibold text-lg text-gray-800 mt-4">{friend.name}</h3>
 
-          <span className="mt-1 text-xs px-2 py-[2px] rounded-full bg-red-100 text-red-600 font-medium">
+          <span className="mt-2 text-xs px-2.5 py-1 rounded-full bg-red-100 text-red-600 font-semibold">
             {friend.status}
           </span>
 
-          <p className="text-xs text-gray-500 mt-3 leading-relaxed">
+          <p className="text-sm text-gray-500 mt-4 leading-relaxed max-w-[250px]">
             {friend.bio}
           </p>
 
-          <div className="mt-6 w-full space-y-2">
-            <button className="w-full bg-gray-100 hover:bg-gray-200 text-sm py-2 rounded-md flex items-center justify-center gap-2 text-gray-700">
-              <FiClock size={14} />
-              Snooze 2 Weeks
-            </button>
-
-            <button className="w-full bg-gray-100 hover:bg-gray-200 text-sm py-2 rounded-md flex items-center justify-center gap-2 text-gray-700">
-              <FiArchive size={14} />
-              Archive
-            </button>
-
-            <button className="w-full text-sm py-2 rounded-md flex items-center justify-center gap-2 text-red-500 hover:bg-red-50">
-              <FiTrash2 size={14} />
-              Delete
-            </button>
+          <div className="mt-8 w-full flex flex-col gap-3">
+            <ActionButton
+              friendId={friend.id}
+              type="snooze"
+              label="Snooze 2 Weeks"
+              icon={<FiClock size={16} />}
+            />
+            <ActionButton
+              friendId={friend.id}
+              type="archive"
+              label="Archive"
+              icon={<FiArchive size={16} />}
+            />
+            <ActionButton
+              friendId={friend.id}
+              type="delete"
+              label="Delete"
+              icon={<FiTrash2 size={16} />}
+            />
           </div>
         </div>
 
         {/* RIGHT PANEL */}
-        <div className="p-6 space-y-4">
+        <div className="p-6 md:p-8 flex-1 space-y-6">
           {/* STATS */}
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <Stat
               title="Days Since Contact"
               value={friend.days_since_contact}
@@ -81,32 +88,47 @@ export default async function Friendinfoshow({ params }) {
           </div>
 
           {/* RELATIONSHIP GOAL */}
-          <div className="bg-gray-50 border border-gray-200 rounded-xl p-4 flex justify-between items-center">
+          <div className="bg-gray-50 border border-gray-200 rounded-xl p-5 flex flex-col sm:flex-row gap-3 justify-between items-start sm:items-center">
             <div>
               <p className="text-sm font-semibold text-gray-800">
                 Relationship Goal
               </p>
-              <p className="text-xs text-gray-500">
+              <p className="text-sm text-gray-500 mt-0.5">
                 Connect every{" "}
-                <span className="font-medium">{friend.goal} days</span>
+                <span className="font-semibold text-blue-600">{friend.goal} days</span>
               </p>
             </div>
 
-            <button className="text-xs text-gray-500 hover:text-gray-700">
-              Edit
+            <button className="text-sm font-medium text-blue-600 hover:text-blue-700 bg-blue-50 px-3 py-1.5 rounded-lg transition-colors">
+              Edit Goal
             </button>
           </div>
 
           {/* QUICK CHECK-IN */}
-          <div className="bg-gray-50 border border-gray-200 rounded-xl p-4">
-            <p className="text-sm font-semibold text-gray-800 mb-3">
+          <div className="bg-gray-50 border border-gray-200 rounded-xl p-5">
+            <p className="text-sm font-semibold text-gray-800 mb-4">
               Quick Check-in
             </p>
 
-            <div className="grid grid-cols-3 gap-3">
-              <Action icon={<FiPhone size={16} />} label="Call" />
-              <Action icon={<FiMessageSquare size={16} />} label="Text" />
-              <Action icon={<FiVideo size={16} />} label="Video" />
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <ActionButton
+                friendId={friend.id}
+                type="call"
+                label="Call"
+                icon={<FiPhone size={18} />}
+              />
+              <ActionButton
+                friendId={friend.id}
+                type="text"
+                label="Text"
+                icon={<FiMessageSquare size={18} />}
+              />
+              <ActionButton
+                friendId={friend.id}
+                type="video"
+                label="Video"
+                icon={<FiVideo size={18} />}
+              />
             </div>
           </div>
         </div>
@@ -115,22 +137,11 @@ export default async function Friendinfoshow({ params }) {
   );
 }
 
-/* STAT CARD */
 function Stat({ title, value }) {
   return (
     <div className="bg-gray-50 border border-gray-200 rounded-xl py-4 text-center">
       <p className="text-lg font-semibold text-gray-800">{value}</p>
       <p className="text-xs text-gray-500 mt-1">{title}</p>
     </div>
-  );
-}
-
-/* ACTION BUTTON */
-function Action({ icon, label }) {
-  return (
-    <button className="flex flex-col items-center justify-center gap-1 bg-white border border-gray-300 rounded-lg py-3 hover:bg-gray-100">
-      <div className="text-gray-700">{icon}</div>
-      <span className="text-xs text-gray-600">{label}</span>
-    </button>
   );
 }
