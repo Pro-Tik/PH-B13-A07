@@ -3,6 +3,7 @@ import React from "react";
 import { HiHome, HiOutlineClock } from "react-icons/hi";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import { IoStatsChartSharp } from "react-icons/io5";
 export default function Navbar() {
   const pathname = usePathname();
 
@@ -16,7 +17,7 @@ export default function Navbar() {
   const inactiveStyles = "text-gray-600 hover:bg-gray-100";
 
   return (
-    <nav className="navbar bg-base-100 px-4 md:px-12 py-4">
+    <nav className="navbar bg-white shadow-sm px-4 md:px-12 py-4 z-50 relative">
       <div className="flex-1">
         <Link
           href="/"
@@ -48,7 +49,7 @@ export default function Navbar() {
               href="/analytics"
               className={`${linkStyles} ${isActive("/analytics") ? activeStyles : inactiveStyles}`}
             >
-              Analytics
+              <IoStatsChartSharp /> Analytics
             </Link>
           </li>
         </ul>
