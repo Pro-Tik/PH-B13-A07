@@ -75,19 +75,12 @@ export default function HeroHeaders({ friendsData = [] }) {
                 Overdue
               </div>
             </div>
-            <div className="bg-white rounded-lg border shadow-sm p-4">
-              <div className="stat-value text-red-500 text-xl">
-                12
-              </div>
-              <div className="stat-title text-[10px] uppercase font-bold tracking-wider">
-                Total Interactions This Month
-              </div>
-            </div>
+
 
           </div>
 
           {/* Desktop / Tablet: grid layout */}
-          <div className="hidden md:grid grid-cols-5 gap-6 p-6 bg-transparent text-center border border-slate-100 shadow-sm rounded-lg">
+          <div className="hidden md:grid grid-cols-4 gap-6 p-6 bg-transparent text-center border border-slate-100 shadow-sm rounded-lg">
             <div className="flex flex-col items-center justify-center">
               <div className="stat-value text-slate-700 text-3xl">
                 {friendsCount}
@@ -123,14 +116,7 @@ export default function HeroHeaders({ friendsData = [] }) {
                 Overdue
               </div>
             </div>
-            <div className="bg-white rounded-lg  shadow-sm p-4">
-              <div className="stat-value text-red-500 text-xl">
-                12
-              </div>
-              <div className="stat-title text-[10px] uppercase font-bold tracking-wider">
-                Total Interactions This Month
-              </div>
-            </div>
+
           </div>
         </div>
       </div>
