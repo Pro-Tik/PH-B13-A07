@@ -25,13 +25,15 @@ export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased bg-[#1e3a34] text-slate-800`}
       data-theme="light"
     >
-      <body className="min-h-screen flex flex-col">
+      <body className="min-h-screen flex flex-col bg-[#f8fafc]">
         <Navbar />
         <TimelineProvider>
-          <main className="flex-1">{children}</main>
+          <main className="flex-grow w-full min-h-[calc(100vh-350px)] flex flex-col">
+            {children}
+          </main>
         </TimelineProvider>
         <Footer />
         <ToastContainer position="bottom-right" autoClose={3000} />
